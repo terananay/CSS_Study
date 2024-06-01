@@ -560,17 +560,27 @@ body {
 }
 
 .boards-list {
+  display: grid;
+  /* 100%占める */
+  grid-template-columns: 1fr;
+  /* 余白 */
+  gap: 20px;
+  margin-top: 20px;
 }
 
 /* 768px以上の場合のスタイル */
 @media (width > 767px) {
   .boards-list {
+    /* 1frを２つ並べる */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* 1024px以上の場合のスタイル */
 @media (width > 1023px) {
   .boards-list {
+    /* 1frを２つ並べる */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -578,33 +588,98 @@ body {
 }
 
 .board-link {
+  /* aタグはデフォルトでインライン。インラインだと広がらないのでブロックにする */
+  display: block;
+  /* 角丸 */
+  border-radius: 6px;
+  /* 線を引く */
+  border: 1px solid #f1f2f6;
+  /* 要素のはみ出た部分を隠す.これをしないとthumbnailの画像がborder-radiusで表示されない */
+  overflow: hidden;
+}
+
+.board-link:hover {
+  border-color: #fc7401;
 }
 
 .board-thumbnail {
+  /* サムネイルの画像表示の仕方 */
+  /* coverはアスベクト比を維持したまま要素を埋める。はみ出たら切り落とす */
+  /* containは全部映す　どんなに大きくても引き延ばして表示する */
+  /* fillは比率が合わなかったら引き延ばして埋める あまり見た目が良くないので使わない */
+  object-fit: cover;
+  /* 画像の比率を決める */
+  aspect-ratio: 16/9;
+  /* 画像が小さい時に広げて埋める */
+  width: 100%;
 }
 
 .board-body {
+  padding: 10px;
 }
 
 .board-title {
+  font-size: 14px;
+  border-bottom: 1px solid #f1f2f6;
+  padding-bottom: 10px;
 }
 
 .board-date {
+  /* 横並びにする */
+  display: flex;
+  /* 縦を揃える */
+  align-items: center;
+  /* 右に余白を入れる */
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 .board-spot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 .board-bottom {
+  display: flex;
+  /* ハジに寄せる */
+  justify-content: space-between;
+  /* 1番上の要素に縦幅を合わせる */
+  align-items: flex-start;
+  /* 余白 */
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .board-category {
+  background-color: #333;
+  color: #fff;
+  font-size: 12px;
+  /* inlineとblockのいいとこどり */
+  display: inline-block;
+  /* 上下　左右 */
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .board-tags {
+  display: flex;
+  justify-content: flex-end;
+  /* wrap 要素(文字など)を折り返す */
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 .board-tag {
+  display: inline-block;
+  font-size: 12px;
+  background-color: #fc7401;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
 }
 
 /* footer */
